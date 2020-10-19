@@ -27,6 +27,8 @@ public class Player {
 	@Column(columnDefinition = "varchar(255) default 'Anonymous'")
 	String name;
 	@Column
+	String password;
+	@Column
 	@Temporal(TemporalType.TIMESTAMP)
 	Date date = new Date(System.currentTimeMillis());
 	@Column
@@ -61,6 +63,14 @@ public class Player {
 
 	public void setName(String name) {
 		this.name = addName(name);
+	}
+	
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public Date getDate() {
