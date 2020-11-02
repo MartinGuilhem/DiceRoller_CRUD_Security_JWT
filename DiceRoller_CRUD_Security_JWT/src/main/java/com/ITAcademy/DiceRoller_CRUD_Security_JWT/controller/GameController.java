@@ -33,7 +33,6 @@ public class GameController {
 	// PLAYER {ID} ROLLS THE DICES (CREATE GAME)
  	@PostMapping("/players/{id}/games")
  	public Game rollTheDices(@PathVariable(name ="id") Long id) {
- 		
  		Player player = playerServiceImpl.getPlayer(id);
  		Long gameId=gameServiceImpl.rollDices(player);
  		return gameServiceImpl.getGameById(gameId);	 		

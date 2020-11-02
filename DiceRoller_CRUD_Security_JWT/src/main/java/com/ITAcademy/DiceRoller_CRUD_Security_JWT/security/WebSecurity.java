@@ -27,7 +27,6 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 		this.userDetailsService = userDetailsService;
 	}
 
-	// que hace este bean?
 	@Bean
 	public BCryptPasswordEncoder bCryptPasswordEncoder() {
 		return new BCryptPasswordEncoder();
@@ -47,6 +46,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 			.cors().and()
 			.csrf().disable()
 			.authorizeRequests().antMatchers(HttpMethod.POST, LOGIN_URL).permitAll() // permitimos el acceso a /login a cualquiera 
+			.antMatchers(HttpMethod.POST, "/api/players").permitAll()  // permitimos acceso a la creacion de usuario nuevo
 			.anyRequest().authenticated().and()  //cualquier otra peticion requiere autenticacion
 				.addFilter(new JWTAuthenticationFilter(authenticationManager()))  
 				.addFilter(new JWTAuthorizationFilter(authenticationManager()));
@@ -58,7 +58,6 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 		auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
 	}
 
-	// que hace este bean?
 	@Bean
 	CorsConfigurationSource corsConfigurationSource() {
 		final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
