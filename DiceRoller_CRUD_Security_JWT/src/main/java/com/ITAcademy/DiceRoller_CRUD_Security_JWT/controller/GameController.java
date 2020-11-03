@@ -17,7 +17,6 @@ import com.ITAcademy.DiceRoller_CRUD_Security_JWT.dto.Player;
 import com.ITAcademy.DiceRoller_CRUD_Security_JWT.service.GameServiceImpl;
 import com.ITAcademy.DiceRoller_CRUD_Security_JWT.service.PlayerServiceImpl;
 
-
 @RestController
 @RequestMapping("/api")
 @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})

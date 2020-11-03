@@ -52,9 +52,22 @@ public class GameServiceImpl implements IGameService {
 		Game game = new Game(null, dice1, dice2, won, player);
 		this.addGame(game);
 		player.setGame(game);
-		player.updateWinAvGames();
+		updateWinAvGames(player);
 		playerServiceImpl.updatePlayer(player);
 		return game.getId();
+	}
+	
+	// SETTING WINAVG FROM GAME
+	@Override
+	public void updateWinAvGames(Player player) {
+		int gamesWon = 0;
+		List<Game> games = listGames(player);
+		for (int i=0;i<games.size();i++) { 
+			if(games.get(i).isWon())
+				gamesWon++;
+		}
+		double winAverage=(double) gamesWon / (double) games.size();
+		player.setWinAvg(winAverage);
 	}
 	
 	// Win or Not
@@ -71,5 +84,4 @@ public class GameServiceImpl implements IGameService {
 	public void deleteGames() {
 		iGameDAO.deleteAll();		
 	}
-	
 }

@@ -13,7 +13,6 @@ import javax.persistence.Table;
 @Table(name = "game")
 public class Game {
 
-
 	// ATTRIBUTES
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

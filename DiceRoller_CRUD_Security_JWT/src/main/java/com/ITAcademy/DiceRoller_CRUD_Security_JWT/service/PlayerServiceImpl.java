@@ -8,10 +8,8 @@ import org.springframework.stereotype.Service;
 import com.ITAcademy.DiceRoller_CRUD_Security_JWT.dao.IPlayerDAO;
 import com.ITAcademy.DiceRoller_CRUD_Security_JWT.dto.Player;
 
-
 @Service
 public class PlayerServiceImpl implements IPlayerService {
-
 
 	// Use of methods from repository DAO
 	@Autowired
@@ -46,9 +44,8 @@ public class PlayerServiceImpl implements IPlayerService {
 	public Double getRanking(List<Player> players) {
 		double ranking=0.00;
 		double sumRanking=0.00;
-		for (int i=1;i<players.size();i++) {
+		for (int i=0;i<players.size();i++) {
 			ranking=players.get(i).getWinAvg();
-			System.out.println("\n\n\n####"+ranking+"\n\n\n");
 			sumRanking = sumRanking + ranking;
 		}
 		return sumRanking / (double) players.size();
@@ -59,12 +56,14 @@ public class PlayerServiceImpl implements IPlayerService {
 	public Player Loser() {
 		List<Player> players = this.listPlayers();
 		Long id = null;
-		int i = 0;
 		double min = 100.00;
-		for (i = 0; i < players.size(); i++) {
-			if (players.get(i).getWinAvg() < min)
+		for (int i=0;i<players.size();i++) {
+			if (players.get(i).getWinAvg() < min) {
 				min = players.get(i).getWinAvg();
 				id = players.get(i).getId();
+				System.out.println("\n\n### min= "+min+"id= "+id+"\n\n");
+			}
+
 		}
 		return this.getPlayer(id);
 	}
@@ -74,12 +73,13 @@ public class PlayerServiceImpl implements IPlayerService {
 	public Player Winner() {
 		List<Player> players = this.listPlayers();
 		Long id = null;
-		int i = 0;
 		double max = 0.00;
-		for (i = 0; i < players.size(); i++) {
-			if (players.get(i).getWinAvg() > max)
+		for (int i=0;i<players.size();i++) {
+			if (players.get(i).getWinAvg() > max) {
 				max = players.get(i).getWinAvg();
 				id = players.get(i).getId();
+				System.out.println("\n\n### max= "+max+"id= "+id+"\n\n");
+			}
 		}
 		return this.getPlayer(id);
 	}

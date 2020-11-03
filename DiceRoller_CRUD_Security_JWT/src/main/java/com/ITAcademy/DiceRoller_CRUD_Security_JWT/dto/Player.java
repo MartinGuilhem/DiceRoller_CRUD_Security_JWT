@@ -109,17 +109,6 @@ public class Player {
 		return name;
 	}
 
-	// SETTING WINAVG FROM GAME
-	public void updateWinAvGames() {
-		int gamesWon = 0;
-		for (Game g : game) { 
-			if (g.isWon())
-				gamesWon++;
-		}
-		double winAverage=(double) gamesWon / (double) game.size();
-		this.setWinAvg(winAverage);
-	}
-
 	@Override
 	public String toString() {
 		return "Player [id=" + id + ", name= " + name + ", winAvg=" + winAvg + ", entry date=" + date + "  ]";

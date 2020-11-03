@@ -27,4 +27,6 @@ public interface IGameService {
 		// Win or Not 
 		public boolean won(int dice1, int dice2);
 
+		void updateWinAvGames(Player player);
+
 }

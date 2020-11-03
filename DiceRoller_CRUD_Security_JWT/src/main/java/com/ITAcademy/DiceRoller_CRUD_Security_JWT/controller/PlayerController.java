@@ -1,10 +1,8 @@
 package com.ITAcademy.DiceRoller_CRUD_Security_JWT.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.codec.CharSequenceEncoder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -62,8 +60,7 @@ public class PlayerController {
 	@GetMapping("/players/ranking")
 	public String getRanking() {		
 		double ranking=0.00;
-		List<Player> players = new ArrayList<Player>();
-		players=this.listPlayers();
+		List<Player> players = this.listPlayers();
 		ranking=playerServiceImpl.getRanking(players);		
 		return "The total Average Ranking of All Players is: "+ranking;
 	}
