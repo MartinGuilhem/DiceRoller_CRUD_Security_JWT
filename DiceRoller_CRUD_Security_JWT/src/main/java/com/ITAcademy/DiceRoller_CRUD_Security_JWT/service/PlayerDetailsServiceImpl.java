@@ -8,22 +8,22 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.ITAcademy.DiceRoller_CRUD_Security_JWT.dao.IPlayerDAO;
 import com.ITAcademy.DiceRoller_CRUD_Security_JWT.dto.Player;
+import com.ITAcademy.DiceRoller_CRUD_Security_JWT.repository.IPlayerRepository;
 
 
 @Service
 public class PlayerDetailsServiceImpl implements UserDetailsService {
 
-	private IPlayerDAO iPlayerDAO;
+	private IPlayerRepository iPlayerRepository;
 
-	public PlayerDetailsServiceImpl(IPlayerDAO iPlayerDAO) {
-		this.iPlayerDAO = iPlayerDAO;
+	public PlayerDetailsServiceImpl(IPlayerRepository iPlayerRepository) {
+		this.iPlayerRepository = iPlayerRepository;
 	}
 	
 //	@Override
 	public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
-		Player player = iPlayerDAO.findByName(name);
+		Player player = iPlayerRepository.findByName(name);
 		if (player == null) {
 			throw new UsernameNotFoundException(name);
 		}
